@@ -10,21 +10,25 @@ import java.util.List;
 
 public class MainController {
     public void run() {
-        //게임 초기화
-            //컴퓨터에 숫자 초기화
-            //사용자 입력받기
+        Computer computerNumbers = gameStart();
+        while (true) {
+                User userNumbers = new User(readUserNumbers());
+                boolean isCorrect = computerNumbers.compareNumbers(userNumbers);
+                if (isCorrect){
+                    break;
+                }
+            }
+        }
 
-        Computer computer = new Computer(createRandomNumber());
-        User user = new User(readUserNumbers());
-        //게임 시작
-            //컴퓨터 숫자와 사용자 숫자 비교
-        //게임 종료
-            // 숫자가 일치하면 종료
-            // 재시작 여부 묻고 재시작 or 종료
+    private static Computer gameStart() {
+        Computer computerNumbers = new Computer(createRandomNumber());
+        System.out.println("숫자 야구 게임을 시작합니다.");
+        return computerNumbers;
     }
 
+
     private static Numbers readUserNumbers() {
-        System.out.println("숫자 야구 게임을 시작합니다.\n숫자를 입력해주세요 : ");
+        System.out.println("숫자를 입력해주세요 : ");
         String userInput = Console.readLine();
 
         List<Integer> userNumbers = new ArrayList<>();
